@@ -1,0 +1,322 @@
+[
+  {
+    "animal_sv": "Älg",
+    "animal_en": "Moose / Eurasian elk",
+    "scientific_name": "Alces alces",
+    "category": "Mammals",
+    "icon_file": "älg.png",
+    "streets": [
+      "Älgvägen"
+    ]
+  },
+  {
+    "animal_sv": "Björn",
+    "animal_en": "Brown bear",
+    "scientific_name": "Ursus arctos",
+    "category": "Mammals",
+    "icon_file": "björn.png",
+    "streets": [
+      "Björnvägen"
+    ]
+  },
+  {
+    "animal_sv": "Bäver",
+    "animal_en": "Eurasian beaver",
+    "scientific_name": "Castor fiber",
+    "category": "Mammals",
+    "icon_file": "bäver.png",
+    "streets": [
+      "Bävervägen"
+    ]
+  },
+  {
+    "animal_sv": "Ekorre",
+    "animal_en": "Red squirrel",
+    "scientific_name": "Sciurus vulgaris",
+    "category": "Mammals",
+    "icon_file": "ekorre.png",
+    "streets": [
+      "Ekorrvägen"
+    ]
+  },
+  {
+    "animal_sv": "Hermelin",
+    "animal_en": "Stoat / Ermine",
+    "scientific_name": "Mustela erminea",
+    "category": "Mammals",
+    "icon_file": "hermelin.png",
+    "streets": [
+      "Hermelinvägen"
+    ]
+  },
+  {
+    "animal_sv": "Iller",
+    "animal_en": "European polecat / Ferret",
+    "scientific_name": "Mustela putorius",
+    "category": "Mammals",
+    "icon_file": "iller.png",
+    "streets": [
+      "Illervägen"
+    ]
+  },
+  {
+    "animal_sv": "Lodjur",
+    "animal_en": "Eurasian lynx",
+    "scientific_name": "Lynx lynx",
+    "category": "Mammals",
+    "icon_file": "lodjur.png",
+    "streets": [
+      "Lodjursvägen"
+    ]
+  },
+  {
+    "animal_sv": "Mård",
+    "animal_en": "European pine marten",
+    "scientific_name": "Martes martes",
+    "category": "Mammals",
+    "icon_file": "mård.png",
+    "streets": [
+      "Mårdvägen"
+    ]
+  },
+  {
+    "animal_sv": "Rådjur",
+    "animal_en": "European roe deer",
+    "scientific_name": "Capreolus capreolus",
+    "category": "Mammals",
+    "icon_file": "rådjur.png",
+    "streets": [
+      "Rådjursvägen"
+    ]
+  },
+  {
+    "animal_sv": "Utter",
+    "animal_en": "European otter",
+    "scientific_name": "Lutra lutra",
+    "category": "Mammals",
+    "icon_file": "utter.png",
+    "streets": [
+      "Uttervägen"
+    ]
+  },
+  {
+    "animal_sv": "Varg",
+    "animal_en": "Grey wolf",
+    "scientific_name": "Canis lupus",
+    "category": "Mammals",
+    "icon_file": "varg.png",
+    "streets": [
+      "Vargvägen"
+    ]
+  },
+  {
+    "animal_sv": "Bofink",
+    "animal_en": "Common chaffinch",
+    "scientific_name": "Fringilla coelebs",
+    "category": "Birds",
+    "icon_file": "bofink.png",
+    "streets": [
+      "Bofinksvägen"
+    ]
+  },
+  {
+    "animal_sv": "Falk",
+    "animal_en": "Falcon",
+    "scientific_name": "Falco",
+    "category": "Birds",
+    "icon_file": "falk.png",
+    "streets": [
+      "Falkvägen"
+    ]
+  },
+  {
+    "animal_sv": "Gök",
+    "animal_en": "Common cuckoo",
+    "scientific_name": "Cuculus canorus",
+    "category": "Birds",
+    "icon_file": "gök.png",
+    "streets": [
+      "Gökropsvägen"
+    ]
+  },
+  {
+    "animal_sv": "Hök",
+    "animal_en": "Hawk",
+    "scientific_name": "Accipitridae",
+    "category": "Birds",
+    "icon_file": "hök.png",
+    "streets": [
+      "Hökvägen"
+    ]
+  },
+  {
+    "animal_sv": "Lärka",
+    "animal_en": "Eurasian skylark",
+    "scientific_name": "Alauda arvensis",
+    "category": "Birds",
+    "icon_file": "lärka.png",
+    "streets": [
+      "Lärkvägen"
+    ]
+  },
+  {
+    "animal_sv": "Morkulla",
+    "animal_en": "Eurasian woodcock",
+    "scientific_name": "Scolopax rusticola",
+    "category": "Birds",
+    "icon_file": "morkulla.png",
+    "streets": [
+      "Morkullevägen"
+    ]
+  },
+  {
+    "animal_sv": "Orre",
+    "animal_en": "Black grouse",
+    "scientific_name": "Lyrurus tetrix",
+    "category": "Birds",
+    "icon_file": "orre.png",
+    "streets": [
+      "Orrvägen"
+    ]
+  },
+  {
+    "animal_sv": "Rödhake",
+    "animal_en": "European robin",
+    "scientific_name": "Erithacus rubecula",
+    "category": "Birds",
+    "icon_file": "rödhake.png",
+    "streets": [
+      "Rödhakevägen"
+    ]
+  },
+  {
+    "animal_sv": "Tornsvala",
+    "animal_en": "Common swift",
+    "scientific_name": "Apus apus",
+    "category": "Birds",
+    "icon_file": "tornsvala.png",
+    "streets": [
+      "Tornsvalevägen"
+    ]
+  },
+  {
+    "animal_sv": "Trast",
+    "animal_en": "True thrush",
+    "scientific_name": "Turdus",
+    "category": "Birds",
+    "icon_file": "trast.png",
+    "streets": [
+      "Trastvägen"
+    ]
+  },
+  {
+    "animal_sv": "Törnskata",
+    "animal_en": "Red-backed shrike",
+    "scientific_name": "Lanius collurio",
+    "category": "Birds",
+    "icon_file": "törnskata.png",
+    "streets": [
+      "Törnskatevägen"
+    ]
+  },
+  {
+    "animal_sv": "Vigg",
+    "animal_en": "Tufted duck",
+    "scientific_name": "Aythya fuligula",
+    "category": "Birds",
+    "icon_file": "vigg.png",
+    "streets": [
+      "Viggens Väg"
+    ]
+  },
+  {
+    "animal_sv": "Örn",
+    "animal_en": "Eagle",
+    "scientific_name": "Aquila",
+    "category": "Birds",
+    "icon_file": "örn.png",
+    "streets": [
+      "Örnvägen"
+    ]
+  },
+  {
+    "animal_sv": "Lax",
+    "animal_en": "Atlantic salmon",
+    "scientific_name": "Salmo salar",
+    "category": "Fish",
+    "icon_file": "lax.png",
+    "streets": [
+      "Laxgränd"
+    ]
+  },
+  {
+    "animal_sv": "Gärs",
+    "animal_en": "Ruffe",
+    "scientific_name": "Gymnocephalus cernuus",
+    "category": "Fish",
+    "icon_file": "gärs.png",
+    "streets": [
+      "Gärssjöbäcksvägen"
+    ]
+  },
+  {
+    "animal_sv": "Bi",
+    "animal_en": "Honey bee",
+    "scientific_name": "Apis mellifera",
+    "category": "Insects",
+    "icon_file": "bi.png",
+    "streets": [
+      "Bigatan"
+    ]
+  },
+  {
+    "animal_sv": "Fjäril",
+    "animal_en": "Butterfly",
+    "scientific_name": "Lepidoptera",
+    "category": "Insects",
+    "icon_file": "fjäril.png",
+    "streets": [
+      "Fjärilsvägen"
+    ]
+  },
+  {
+    "animal_sv": "Häst",
+    "animal_en": "Horse",
+    "scientific_name": "Equus caballus",
+    "category": "Mammals",
+    "icon_file": "häst.png",
+    "streets": [
+      "Hästskovägen"
+    ]
+  },
+  {
+    "animal_sv": "Gris",
+    "animal_en": "Pig",
+    "scientific_name": "Sus domesticus",
+    "category": "Mammals",
+    "icon_file": "gris.png",
+    "streets": [
+      "Grisbackavägen"
+    ]
+  },
+  {
+    "animal_sv": "Vädur",
+    "animal_en": "Ram / Sheep",
+    "scientific_name": "Ovis aries",
+    "category": "Mammals",
+    "icon_file": "vädur.png",
+    "streets": [
+      "Vädursgatan"
+    ]
+  },
+  {
+    "animal_sv": "Stenbock",
+    "animal_en": "Alpine ibex",
+    "scientific_name": "Capra ibex",
+    "category": "Mammals",
+    "icon_file": "stenbock.png",
+    "streets": [
+      "Stenbocksvägen"
+    ]
+  }
+]
