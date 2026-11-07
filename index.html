@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Umeå — OpenStreetMap & Animal Streets Explorer</title>
-  <meta name="description" content="Interactive vector street map of Umeå, Sweden pulled from Overpass API. Explore all 847 streets and 32 animal-named streets with Wikipedia animal icons.">
-  
+  <title>Animal Streets of Umeå</title>
+  <meta name="description"
+    content="Interactive vector street map of Umeå, Sweden pulled from Overpass API. Explore all 847 streets and 32 animal-named streets with Wikipedia animal icons.">
+
   <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap"
+    rel="stylesheet">
+
   <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-  
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="theme-dark">
   <div id="app-container">
-    
+
     <!-- Top Navigation Bar -->
     <header id="top-navbar" class="glass-panel">
       <div class="brand-section">
@@ -32,7 +38,8 @@
       <!-- Top Action Controls -->
       <div class="header-actions">
         <div class="filter-pills" id="quick-filters">
-          <button id="filter-all-animals" class="filter-pill animal-pill active" data-filter="all-animals">🐾 Animal Streets (32)</button>
+          <button id="filter-all-animals" class="filter-pill animal-pill active" data-filter="all-animals">🐾 Animal
+            Streets (32)</button>
           <button id="filter-mammals" class="filter-pill mammal-pill" data-filter="mammals">🐻 Mammals (15)</button>
           <button id="filter-birds" class="filter-pill bird-pill" data-filter="birds">🦅 Birds (13)</button>
           <button id="filter-insects" class="filter-pill insect-pill" data-filter="insects">🦋 Insects (2)</button>
@@ -52,7 +59,7 @@
 
     <!-- Main Content Area: Map + Sidebar -->
     <main id="main-content">
-      
+
       <!-- Leaflet Map Container -->
       <div id="map"></div>
 
@@ -100,14 +107,16 @@
       <aside id="side-drawer" class="side-drawer glass-panel">
         <div class="drawer-header">
           <div class="drawer-tabs">
-            <button id="tab-btn-animal" class="tab-btn active" data-tab="animal-tab">🐾 Animal Streets (<span id="animal-tab-count">32</span>)</button>
-            <button id="tab-btn-all" class="tab-btn" data-tab="all-tab">📖 All Streets (<span id="all-tab-count">847</span>)</button>
+            <button id="tab-btn-animal" class="tab-btn active" data-tab="animal-tab">🐾 Animal Streets (<span
+                id="animal-tab-count">32</span>)</button>
+            <button id="tab-btn-all" class="tab-btn" data-tab="all-tab">📖 All Streets (<span
+                id="all-tab-count">847</span>)</button>
           </div>
           <button id="drawer-close-btn" class="drawer-close-btn">✕</button>
         </div>
 
         <div class="drawer-content">
-          
+
           <!-- Tab 1: Animal Streets with Wikipedia Icons -->
           <div id="animal-tab" class="tab-pane active">
             <div id="animal-cards-list" class="animal-grid">
@@ -118,7 +127,8 @@
           <!-- Tab 2: All Streets A-Z Directory -->
           <div id="all-tab" class="tab-pane">
             <div class="all-streets-header">
-              <input type="text" id="all-streets-filter-input" placeholder="Filter A-Z list..." class="sub-search-input">
+              <input type="text" id="all-streets-filter-input" placeholder="Filter A-Z list..."
+                class="sub-search-input">
             </div>
             <div id="all-streets-list" class="streets-a-to-z">
               <!-- Dynamically populated -->
@@ -133,9 +143,11 @@
   </div>
 
   <!-- Leaflet Library -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
   <!-- Map Application Logic -->
   <script src="app.js"></script>
 </body>
+
 </html>
