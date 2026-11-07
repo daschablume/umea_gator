@@ -8,46 +8,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   let animalMarkerLayer = null;
   let highlightedLayer = null;
   let currentFilter = 'all';
-  let currentTheme = 'dark'; // 'dark' | 'light' | 'blueprint'
-  let cartoApiKey = '';
+  let currentTheme = 'light'; // 'dark' | 'light'
   const animalStreetLookup = new Map(); // streetName -> animal object
   const allUniqueStreets = new Set();
   const streetGeometryMap = new Map(); // streetName -> array of layers
 
-  // Fetch CARTO_API_KEY from .env file (or carto file as fallback)
-  try {
-    const envResp = await fetch('.env');
-    if (envResp.ok) {
-      const envText = await envResp.text();
-      const match = envText.match(/^\s*CARTO_API_KEY\s*=\s*(?:["']([^"'\r\n]+)["']|([^#\r\n]+))/m);
-      if (match) {
-        const val = (match[1] || match[2] || '').trim();
-        if (val) {
-          cartoApiKey = val;
-          console.log('Successfully loaded CARTO_API_KEY from .env');
-        }
-      }
-    }
-  } catch (err) {
-    console.warn('Could not load .env file:', err);
-  }
-
-  // Fallback to carto file if key was not found in .env
-  if (!cartoApiKey) {
-    try {
-      const cartoKeyResp = await fetch('carto');
-      if (cartoKeyResp.ok) {
-        cartoApiKey = (await cartoKeyResp.text()).trim();
-        console.log('Successfully loaded Carto API key from carto file.');
-      }
-    } catch (err) {
-      console.warn('Could not load carto API key file:', err);
-    }
-  }
-
+  const cartoApiKey = 'cb1_2vgj_1_50a1af1b6daef54cda46c29f';
   const keyParam = cartoApiKey ? `?key=${encodeURIComponent(cartoApiKey)}` : '';
 
-  // Tile layers with API key
   const tileLayers = {
     dark: L.tileLayer(`https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png${keyParam}`, {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
@@ -70,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     center: [63.8258, 20.2630],
     zoom: 13,
     zoomControl: false,
-    layers: [tileLayers.dark]
+    layers: [tileLayers.light]
   });
 
   // Custom Zoom Control top-right
@@ -99,11 +67,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.error('Failed to load map data:', err);
   }
 
-  // Street Styling Function: simplified to primary streets and animal-named streets
+  // Street Styling Function: animal-named streets highlighted, all others grey
   function getStreetStyle(feature) {
     const props = feature.properties;
     const name = props.name || '';
-    const hw = props.highway || 'residential';
     const isAnimal = animalStreetLookup.has(name.toLowerCase());
 
     if (isAnimal) {
@@ -116,20 +83,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       };
     }
 
-    // Primary thoroughfares & motorways (E4, E12)
-    if (hw === 'motorway' || hw === 'trunk' || hw === 'primary') {
-      return {
-        color: '#38bdf8',
-        weight: 3.8,
-        opacity: 0.85,
-        lineCap: 'round',
-        lineJoin: 'round'
-      };
-    }
-
-    // All other streets (secondary, tertiary, residential, pedestrian, service, etc.)
-    const neutralColor = currentTheme === 'light' ? '#94a3b8' : (currentTheme === 'blueprint' ? '#38bdf8' : '#64748b');
-    const neutralOpacity = currentTheme === 'blueprint' ? 0.35 : 0.55;
+    // All other streets (including highways) are neutral grey
+    const neutralColor = currentTheme === 'light' ? '#94a3b8' : '#64748b';
+    const neutralOpacity = 0.55;
     return {
       color: neutralColor,
       weight: 1.8,
@@ -194,18 +150,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     animalMarkerLayer.addTo(map);
 
     // Update Stats
-    document.getElementById('stat-visible-count').textContent = geojsonData.features.length.toLocaleString();
-    document.getElementById('stat-unique-count').textContent = allUniqueStreets.size.toLocaleString();
-    document.getElementById('stat-animal-count').textContent = animalData.length.toString();
-    document.getElementById('animal-tab-count').textContent = animalData.length.toString();
-    document.getElementById('all-tab-count').textContent = allUniqueStreets.size.toLocaleString();
+    const visibleCountEl = document.getElementById('stat-visible-count');
+    if (visibleCountEl) visibleCountEl.textContent = geojsonData.features.length.toLocaleString();
+
+    const uniqueCountEl = document.getElementById('stat-unique-count');
+    if (uniqueCountEl) uniqueCountEl.textContent = allUniqueStreets.size.toLocaleString();
+
+    const animalCountEl = document.getElementById('stat-animal-count');
+    if (animalCountEl) animalCountEl.textContent = animalData.length.toString();
+
+    const animalTabCountEl = document.getElementById('animal-tab-count');
+    if (animalTabCountEl) animalTabCountEl.textContent = animalData.length.toString();
+
+    const allTabCountEl = document.getElementById('all-tab-count');
+    if (allTabCountEl) allTabCountEl.textContent = allUniqueStreets.size.toLocaleString();
   }
 
   // Render Custom Animal Markers (optionally filtered by category)
   function renderAnimalMarkers(filterCategory = 'all-animals') {
     animalMarkerLayer.clearLayers();
     animalData.forEach(item => {
-      const matchCategory = filterCategory === 'all-animals' || filterCategory === 'all' || 
+      const matchCategory = filterCategory === 'all-animals' || filterCategory === 'all' ||
         item.category.toLowerCase() === filterCategory.toLowerCase();
       if (!matchCategory) return;
 
@@ -234,7 +199,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 cursor: pointer;
                 transition: transform 0.2s;
               " title="${stName} (${item.animal_sv} - ${item.category})">
-                <img src="animal_icons/${item.icon_file}" style="width: 100%; height: 100%; object-fit: cover;" alt="${item.animal_sv}">
+                <img src="animal_icons/${item.icon_file}" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" alt="${item.animal_sv}" draggable="false">
               </div>
             `,
             iconSize: [34, 34],
@@ -242,7 +207,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           });
 
           const marker = L.marker(center, { icon: customIcon });
-          marker.on('click', () => {
+          marker.on('click', (e) => {
+            if (e && e.originalEvent) {
+              L.DomEvent.stopPropagation(e);
+            }
             focusOnStreet(stName);
           });
           animalMarkerLayer.addLayer(marker);
@@ -262,8 +230,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           <img src="animal_icons/${animalInfo.icon_file}" class="popup-animal-img" alt="${animalInfo.animal_sv}">
           <div>
             <div class="popup-title">${props.name}</div>
-            <div class="popup-subtitle"><strong>${animalInfo.animal_sv}</strong> (${animalInfo.animal_en})</div>
-            <div class="popup-tag">🐾 Animal Street • ${animalInfo.category}</div>
+            <div class="popup-subtitle">${animalInfo.animal_en}</div>
+            <div class="popup-tag">${animalInfo.category}</div>
           </div>
         </div>
       `;
@@ -271,7 +239,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       popupHtml = `
         <div>
           <div class="popup-title">${props.name || 'Unnamed Street'}</div>
-          <div class="popup-subtitle">Type: ${props.highway || 'local'} ${props.maxspeed ? '• ' + props.maxspeed + ' km/h' : ''}</div>
         </div>
       `;
     }
@@ -379,11 +346,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Populate All Streets A-Z List
     const allStreetsList = document.getElementById('all-streets-list');
     const sortedStreets = Array.from(allUniqueStreets).filter(s => s && s !== 'Unnamed').sort((a, b) => a.localeCompare(b, 'sv'));
-    
+
     function renderAllStreets(filterText = '') {
       allStreetsList.innerHTML = '';
       const filtered = sortedStreets.filter(s => s.toLowerCase().includes(filterText.toLowerCase()));
-      
+
       filtered.slice(0, 150).forEach(st => {
         const isAnimal = animalStreetLookup.has(st.toLowerCase());
         const row = document.createElement('div');
@@ -426,12 +393,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function applyFilter(filterType) {
       currentFilter = filterType;
-      
+
       streetLayer.eachLayer(layer => {
         const props = layer.feature.properties;
         const name = props.name || '';
-        const hw = props.highway || '';
-        const isPrimary = (hw === 'motorway' || hw === 'trunk' || hw === 'primary');
         const animalInfo = animalStreetLookup.get(name.toLowerCase());
 
         let isTarget = false;
@@ -457,21 +422,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             weight: 2.5,
             opacity: 0.12
           });
-        } else if (isPrimary) {
-          // Primary streets stay clearly visible
-          layer.setStyle({
-            color: '#38bdf8',
-            weight: 3.8,
-            opacity: (filterType === 'all-animals' || filterType === 'all') ? 0.85 : 0.25
-          });
         } else {
-          // Other streets
+          // Other streets (neutral grey)
           const baseStyle = getStreetStyle(layer.feature);
-          const baseOpacity = (filterType === 'all-animals' || filterType === 'all') ? baseStyle.opacity : 0.06;
           layer.setStyle({
             color: baseStyle.color,
             weight: baseStyle.weight,
-            opacity: baseOpacity
+            opacity: baseStyle.opacity
           });
         }
       });
@@ -484,7 +441,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Theme Toggle
     const themeBtn = document.getElementById('theme-toggle-btn');
     const themeIcon = document.getElementById('theme-icon');
-    let activeTileLayer = tileLayers.dark;
+    let activeTileLayer = tileLayers.light;
 
     themeBtn.addEventListener('click', () => {
       if (currentTheme === 'dark') {
@@ -493,13 +450,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         themeIcon.textContent = '☀️';
         map.removeLayer(activeTileLayer);
         activeTileLayer = tileLayers.light;
-        map.addLayer(activeTileLayer);
-      } else if (currentTheme === 'light') {
-        currentTheme = 'blueprint';
-        document.body.className = 'theme-blueprint';
-        themeIcon.textContent = '📐';
-        map.removeLayer(activeTileLayer);
-        activeTileLayer = tileLayers.dark;
         map.addLayer(activeTileLayer);
       } else {
         currentTheme = 'dark';
@@ -518,7 +468,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
         tab.classList.add('active');
-        document.getElementById(tab.dataset.tab).classList.add('active');
+        const targetPane = document.getElementById(tab.dataset.tab);
+        if (targetPane) targetPane.classList.add('active');
       });
     });
 
@@ -529,19 +480,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     document.getElementById('drawer-close-btn').addEventListener('click', () => {
       sideDrawer.classList.add('collapsed');
-    });
-
-    // Legend Toggle
-    const legendMinBtn = document.getElementById('legend-minimize-btn');
-    const legendContent = document.getElementById('legend-content');
-    legendMinBtn.addEventListener('click', () => {
-      if (legendContent.style.display === 'none') {
-        legendContent.style.display = 'flex';
-        legendMinBtn.textContent = '—';
-      } else {
-        legendContent.style.display = 'none';
-        legendMinBtn.textContent = '+';
-      }
     });
   }
 });

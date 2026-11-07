@@ -8,6 +8,9 @@
   <meta name="description"
     content="Interactive vector street map of Umeå, Sweden pulled from Overpass API. Explore all 847 streets and 32 animal-named streets with Wikipedia animal icons.">
 
+  <!-- Favicon (Otter / Utter) -->
+  <link rel="icon" type="image/png" href="animal_icons/utter.png">
+
   <!-- Google Fonts: Inter & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +26,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="theme-dark">
+<body class="theme-light">
   <div id="app-container">
 
     <!-- Top Navigation Bar -->
@@ -47,8 +50,8 @@
         </div>
 
         <div class="theme-toggle-group">
-          <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme (Dark / Light / Blueprint)">
-            <span id="theme-icon">🌙</span>
+          <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme (Dark / Light)">
+            <span id="theme-icon">☀️</span>
           </button>
           <button id="sidebar-toggle-btn" class="icon-btn" title="Toggle Sidebar">
             <span>📑</span>
@@ -66,13 +69,8 @@
       <!-- Floating Map Info & Stats Badge -->
       <div id="map-stats-badge" class="floating-badge glass-panel">
         <div class="stat-item">
-          <span class="stat-num" id="stat-visible-count">2,677</span>
-          <span class="stat-lbl">Street Segments</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
           <span class="stat-num" id="stat-unique-count">847</span>
-          <span class="stat-lbl">Unique Streets</span>
+          <span class="stat-lbl">Streets</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat-item highlight-stat">
@@ -81,36 +79,12 @@
         </div>
       </div>
 
-      <!-- Floating Map Legend -->
-      <div id="map-legend" class="floating-legend glass-panel">
-        <div class="legend-header">
-          <span class="legend-title">Street Legend</span>
-          <button id="legend-minimize-btn" class="legend-min-btn">—</button>
-        </div>
-        <div id="legend-content" class="legend-body">
-          <div class="legend-row">
-            <span class="legend-color legend-animal"></span>
-            <span class="legend-text">Animal-Named Streets</span>
-          </div>
-          <div class="legend-row">
-            <span class="legend-color legend-primary"></span>
-            <span class="legend-text">Highways (E4, E12)</span>
-          </div>
-          <div class="legend-row">
-            <span class="legend-color legend-other"></span>
-            <span class="legend-text">Other Streets</span>
-          </div>
-        </div>
-      </div>
-
       <!-- Interactive Side Drawer -->
       <aside id="side-drawer" class="side-drawer glass-panel">
         <div class="drawer-header">
           <div class="drawer-tabs">
-            <button id="tab-btn-animal" class="tab-btn active" data-tab="animal-tab">🐾 Animal Streets (<span
+            <button id="tab-btn-animal" class="tab-btn active" data-tab="animal-tab">🐾 All Animal Streets (<span
                 id="animal-tab-count">32</span>)</button>
-            <button id="tab-btn-all" class="tab-btn" data-tab="all-tab">📖 All Streets (<span
-                id="all-tab-count">847</span>)</button>
           </div>
           <button id="drawer-close-btn" class="drawer-close-btn">✕</button>
         </div>
