@@ -377,9 +377,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderAllStreets();
 
     // Filter A-Z input
-    document.getElementById('all-streets-filter-input').addEventListener('input', (e) => {
-      renderAllStreets(e.target.value);
-    });
+    const allStreetsFilterInput = document.getElementById('all-streets-filter-input');
+    if (allStreetsFilterInput) {
+      allStreetsFilterInput.addEventListener('input', (e) => {
+        renderAllStreets(e.target.value);
+      });
+    }
 
     // Filter Pills
     document.querySelectorAll('.filter-pill').forEach(btn => {
@@ -475,11 +478,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Drawer Toggle
     const sideDrawer = document.getElementById('side-drawer');
-    document.getElementById('sidebar-toggle-btn').addEventListener('click', () => {
-      sideDrawer.classList.toggle('collapsed');
-    });
-    document.getElementById('drawer-close-btn').addEventListener('click', () => {
-      sideDrawer.classList.add('collapsed');
-    });
+    const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+    if (sidebarToggleBtn && sideDrawer) {
+      sidebarToggleBtn.addEventListener('click', () => {
+        sideDrawer.classList.toggle('collapsed');
+      });
+    }
+    const drawerCloseBtn = document.getElementById('drawer-close-btn');
+    if (drawerCloseBtn && sideDrawer) {
+      drawerCloseBtn.addEventListener('click', () => {
+        sideDrawer.classList.add('collapsed');
+      });
+    }
   }
 });
